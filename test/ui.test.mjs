@@ -69,7 +69,9 @@ test('при запуске рисуются 5 зон A…E с диапазон�
   assert.equal(app.zoneRange(4), '0 … 15');
   assert.equal(app.$('#range-min').textContent, '0');
   assert.equal(app.$('#range-max').textContent, '75');
-  assert.equal(app.$$('.zone-row').length, 5);
+  assert.equal(app.$('#zone-panel'), null, 'панели-списка всех зон нет');
+  assert.equal(app.$$('.zone-row').length, 0);
+  assert.ok(app.$('#btn-add-zone'), 'кнопка создания зоны на месте');
   assert.equal(app.$$('.scale-row').length, 3);
 });
 
@@ -300,7 +302,7 @@ test('заголовок и режим расчёта меняются чере�
   assert.equal(app.$('#range-max').textContent, app.window.String(Number(app.store.state.range.max.toFixed(2))).replace('.', ','));
 });
 
-test('добавление и удаление зон через панель', async () => {
+test('добавление кнопкой и удаление зоны через окно ⚙', async () => {
   const app = await boot();
   app.click(app.$('#btn-add-zone'));
   assert.equal(app.store.state.zones.length, 6);
@@ -308,7 +310,13 @@ test('добавление и удаление зон через панель', 
   assert.equal(app.store.state.zones[5].min, 0);
   assert.equal(app.store.state.zones[0].max, 75);
 
-  const delBtn = app.$$('.zone-row')[5].querySelector('.icon-btn.is-danger');
+  // удаление — через окно настройки новой (нижней) зоны
+  const gear = app.zoneRow(5).querySelector('.zone-label-actions .mini-btn:last-child');
+  app.click(gear);
+  const pop = app.$('.popover');
+  assert.ok(pop, 'окно настройки зоны открылось');
+  const delBtn = [...pop.querySelectorAll('.popover-foot .btn')].find((b) => /Удалить/.test(b.textContent));
+  assert.ok(delBtn, 'в окне есть кнопка удаления');
   app.click(delBtn);
   assert.equal(app.store.state.zones.length, 5);
   assert.equal(app.store.state.zones[4].min, 0);
@@ -317,7 +325,7 @@ test('добавление и удаление зон через панель', 
 test('перемещение зоны вверх меняет её место в списке', async () => {
   const app = await boot();
   const [first, second] = app.store.state.zones;
-  app.click(app.$$('.zone-row')[1].querySelectorAll('.icon-btn')[0]);
+  app.click(app.zoneRow(1).querySelector('.zone-label-actions .mini-btn:first-child'));
   assert.equal(app.store.state.zones[0].name, second.name);
   assert.equal(app.store.state.zones[1].name, first.name);
   assert.equal(app.zoneName(0), second.name);
@@ -486,6 +494,23 @@ test('зона создаётся одной кнопкой, без окон с�
   app.key(input, 'Enter');
   assert.equal(app.store.state.zones.at(-1).name, 'Мусор');
   assert.equal(app.$$('.popover').length, 0);
+});
+
+test('окна со списком всех зон нет — только кнопка «＋ Зона»', async () => {
+  const app = await boot();
+  assert.equal(app.$('#zone-panel'), null);
+  assert.equal(app.$('#zone-list'), null);
+  assert.equal(app.$('#zone-count'), null);
+  assert.equal(app.$$('.zone-row').length, 0);
+  // кнопка живёт под тир-листом и создаёт зону без окон
+  const btn = app.$('#btn-add-zone');
+  assert.ok(btn);
+  assert.ok(btn.closest('.board-panel'), 'кнопка — в панели доски, а не в боковой панели');
+  const before = app.store.state.zones.length;
+  app.click(btn);
+  assert.equal(app.store.state.zones.length, before + 1);
+  assert.equal(app.$$('.popover').length, 0);
+  assert.equal(app.$$('dialog').length, 0);
 });
 
 test('окно редактирования зоны на месте: ⚙ даёт цвет, диапазон, порядок и удаление', async () => {
