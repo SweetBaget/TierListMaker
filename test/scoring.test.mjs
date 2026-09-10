@@ -385,3 +385,50 @@ test('состояние по умолчанию: 5 зон A..E и диапаз�
   void readFileSync;
   void MODE_SUM;
 });
+
+test('повторное перемещение на то же место не меняет баллы', () => {
+  const store = freshStore();
+  store.update((s) => {
+    s.items.push({ id: 'i1', text: 'A', image: null, scores: { 'sc-quality': 7 }, frozen: {}, order: 0, zoneId: s.zones[4].id });
+  });
+  const before = { ...store.state.items[0].scores };
+  const zone = store.state.zones[4]; // элемент уже здесь, позиция не меняется
+  const info = store.moveItem('i1', zone.id, 0);
+  assert.equal(info.unchanged, true);
+  assert.deepEqual(store.state.items[0].scores, before);
+});
+
+test('перенос в другую зону и обратно: соседи и порядок не ломаются', () => {
+  const store = freshStore();
+  store.update((s) => {
+    s.scales.forEach((sc) => {
+      sc.enabled = sc.id === 'sc-quality';
+      sc.weight = 1;
+    });
+    s.items.push({ id: 'a', text: 'a', image: null, scores: { 'sc-quality': 2 }, frozen: {}, order: 0 });
+    s.items.push({ id: 'b', text: 'b', image: null, scores: { 'sc-quality': 7 }, frozen: {}, order: 1 });
+    s.items.push({ id: 'c', text: 'c', image: null, scores: { 'sc-quality': 10 }, frozen: {}, order: 2 });
+  });
+  const zones = store.state.zones; // A 8..10, B 6..8, C 4..6, D 2..4, E 0..2
+  assert.deepEqual(
+    scoring.layout(store.state).map((r) => r.items.map((e) => e.item.id)),
+    [['c'], ['b'], [], ['a'], []]
+  );
+
+  // ставим 'c' в зону B на первое место: цель — балл правого соседа (7)
+  const info = store.moveItem('c', zones[1].id, 0);
+  assert.equal(info.target, 7);
+  assert.deepEqual(
+    scoring.layout(store.state)[1].items.map((e) => e.item.id),
+    ['c', 'b']
+  );
+
+  // возвращаем 'c' в верхнюю зону: цель — минимум зоны (8)
+  const back = store.moveItem('c', zones[0].id, 0);
+  assert.equal(back.target, 8);
+  assert.equal(scoring.itemTotal(store.state.items.find((i) => i.id === 'c'), store.state), 8);
+  assert.deepEqual(
+    scoring.layout(store.state)[0].items.map((e) => e.item.id),
+    ['c']
+  );
+});

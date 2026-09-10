@@ -403,3 +403,66 @@ test('стили приложения разбираются и содержат
   assert.match(css, /\.zone-label \.zone-name\s*{[^}]*white-space:\s*pre-wrap/s);
   assert.match(css, /:root\[data-theme='light'\]/, 'есть светлая тема');
 });
+
+test('кнопка ⚙ в зоне открывает карточку настройки с цветом и диапазоном', async () => {
+  const app = await boot();
+  const gear = app.zoneRow(1).querySelector('.zone-label-actions .mini-btn:last-child');
+  app.click(gear);
+  const pop = app.$('.popover');
+  assert.ok(pop, 'карточка зоны должна открыться');
+  assert.match(pop.querySelector('.popover-title').textContent, /Зона «B»/);
+  assert.equal(pop.querySelectorAll('.color-grid button').length, 8);
+
+  // меняем цвет
+  app.click(pop.querySelectorAll('.color-grid button')[3]);
+  assert.equal(app.store.state.zones[1].color, '#a5e887');
+
+  // меняем нижнюю границу зоны
+  const [minInput] = pop.querySelectorAll('.scale-params input');
+  minInput.value = '52';
+  minInput.dispatchEvent(new app.window.Event('change', { bubbles: true }));
+  assert.equal(app.store.state.zones[1].min, 52);
+  assert.equal(app.store.state.zones[2].max, 52, 'зона ниже подтягивается');
+
+  // «выровнять все зоны»
+  const even = [...pop.querySelectorAll('.popover-foot .btn')].find((b) => /Выровнять/.test(b.textContent));
+  app.click(even);
+  assert.equal(app.store.state.zones[0].min, 60);
+  assert.equal(app.store.state.zones[1].min, 45);
+});
+
+test('Alt+стрелки переносят элемент между зонами', async () => {
+  const app = await boot();
+  app.store.addItem({ text: 'Клавиатура' });
+  const tile = app.tiles(4)[0];
+  const itemId = tile.dataset.itemId;
+  app.key(tile, 'ArrowUp', { altKey: true }); // в зону D
+  const zones = app.store.state.zones;
+  const rowD = app.tiles(3).map((t) => t.dataset.itemId);
+  assert.ok(rowD.includes(itemId), 'элемент должен оказаться в зоне D');
+  app.key(app.$$(`.tile[data-item-id="${itemId}"]`)[0], 'ArrowDown', { altKey: true });
+  assert.ok(app.tiles(4).map((t) => t.dataset.itemId).includes(itemId), 'и вернуться в зону E');
+  void zones;
+});
+
+test('пример из examples/demo-tier-list.json импортируется целиком', async () => {
+  const app = await boot();
+  const example = readFileSync(path.join(ROOT, 'examples/demo-tier-list.json'), 'utf8');
+  app.importJSON(example);
+  const state = app.store.state;
+  assert.equal(state.title, 'Пример: лучшее снаряжение');
+  assert.equal(state.items.length, 12);
+  assert.deepEqual(state.zones.map((z) => z.name), ['S', 'A', 'B', 'C', 'D']);
+  assert.equal(state.zones[0].max, 75);
+  assert.equal(state.zones.at(-1).min, 0);
+  // элементы распределены по всем зонам и отсортированы
+  const occupied = [0, 1, 2, 3, 4].filter((i) => app.tiles(i).length);
+  assert.equal(occupied.length, 5);
+  const top = app.tiles(0).map((t) => Number(t.querySelector('.tile-score').textContent.replace(',', '.')));
+  assert.deepEqual(top, [...top].sort((a, b) => b - a));
+  // заморозка из файла сохранилась
+  const frozenItem = state.items.find((it) => Object.values(it.frozen || {}).some(Boolean));
+  assert.ok(frozenItem, 'в примере есть элемент с замороженной шкалой');
+  const tile = app.$$('.tile').find((t) => t.dataset.itemId === frozenItem.id);
+  assert.ok(tile.classList.contains('is-frozen'));
+});

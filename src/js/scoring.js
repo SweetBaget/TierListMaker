@@ -317,10 +317,17 @@ export function applyMove(state, itemId, zoneId, index) {
   if (!item || zoneIdx < 0) return { state, info: { ok: false, reason: 'not-found' } };
 
   const rows = layout(next);
+  const currentZoneIdx = rows.findIndex((r) => r.items.some((e) => e.item.id === itemId));
+  const currentIndex = currentZoneIdx >= 0 ? rows[currentZoneIdx].items.findIndex((e) => e.item.id === itemId) : -1;
   const zoneLists = rows.map((r) => r.items.map((e) => e.item.id).filter((id) => id !== itemId));
   if (!zoneLists[zoneIdx]) return { state, info: { ok: false, reason: 'not-found' } };
   const targetList = zoneLists[zoneIdx];
   const idx = clamp(Math.round(toNum(index, 0)), 0, targetList.length);
+
+  // отпустили на том же месте — ничего не меняем, чтобы баллы не «плыли»
+  if (currentZoneIdx === zoneIdx && currentIndex === idx) {
+    return { state, info: { ok: true, unchanged: true, adjusted: false } };
+  }
   targetList.splice(idx, 0, itemId);
 
   const totalById = (id) => itemTotal((next.items || []).find((i) => i.id === id), next);

@@ -101,6 +101,9 @@ npm run dist:win:portable   # только portable .exe
 npm run dev      # http://localhost:5173
 ```
 
+Готовый пример для проверки импорта: `examples/demo-tier-list.json`
+(5 зон `S…D`, 12 элементов с картинками, одна замороженная шкала).
+
 В браузере файлы сохраняются штатным скачиванием, автосохранение — в localStorage.
 Открывать `index.html` напрямую через `file://` нельзя: браузеры блокируют ES-модули
 на файловой схеме, поэтому используйте `npm run dev` (в приложении Electron файлы
@@ -109,9 +112,10 @@ npm run dev      # http://localhost:5173
 ### Тесты
 
 ```bash
-npm test           # 52 теста: ядро расчётов + интеграционные тесты интерфейса (jsdom)
+npm test           # 59 тестов: ядро расчётов + интеграционные тесты интерфейса (jsdom)
 npm run test:core  # только логика баллов, зон и шкал
 npm run test:ui    # только интерфейс
+npm run example    # пересобрать examples/demo-tier-list.json
 ```
 
 ---
@@ -181,8 +185,9 @@ src/js/ui/scales.js        панель шкал
 src/js/ui/itemInspector.js карточка элемента
 src/js/app.js              связывание всего, горячие клавиши, файлы
 scripts/dev-server.mjs     статический сервер для браузерного предпросмотра
-test/scoring.test.mjs      28 тестов логики
-test/ui.test.mjs           24 интеграционных теста интерфейса (jsdom)
+test/scoring.test.mjs      30 тестов логики (баллы, диапазоны, перемещение, импорт/экспорт)
+test/ui.test.mjs           29 интеграционных тестов интерфейса (jsdom)
+examples/demo-tier-list.json пример тир-листа для импорта (12 элементов, 5 зон)
 ```
 
 ## Заметки

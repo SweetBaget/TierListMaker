@@ -12,7 +12,7 @@ import { Board, tooltipFor } from './ui/board.js';
 import { $, el, fmt, isTypingTarget, openPopover, plural, scrollIntoViewIfNeeded, toast } from './ui/dom.js';
 import { openItemInspector } from './ui/itemInspector.js';
 import { ScalePanel } from './ui/scales.js';
-import { ZonePanel } from './ui/zones.js';
+import { ZonePanel, openZonePopover } from './ui/zones.js';
 
 const store = new Store(Store.load());
 let board;
@@ -33,6 +33,7 @@ function init() {
     onOpenItem: (itemId, anchor) => openInspector(itemId, anchor),
     onPatchZone: (zoneId, patch) => store.patchZone(zoneId, patch),
     onMoveZone: (zoneId, dir) => store.moveZone(zoneId, dir),
+    onOpenZone: (zoneId, anchor) => openZonePopover(anchor, zoneId, store),
     isSelected: (itemId) => inspector?.itemId === itemId,
     onKeyMove: (itemId, dir) => moveByKeyboard(itemId, dir),
   });

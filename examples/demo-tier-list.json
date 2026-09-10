@@ -1,0 +1,615 @@
+{
+  "schema": "tierlistmaker/1",
+  "app": "Tier List Maker",
+  "version": 1,
+  "exportedAt": "2026-09-10T13:22:11.291Z",
+  "title": "Пример: лучшее снаряжение",
+  "mode": "sum",
+  "autoAdjust": true,
+  "scoreRange": {
+    "min": 0,
+    "max": 75,
+    "hasScales": true
+  },
+  "zones": [
+    {
+      "id": "zone-mtvk42c7-1vah",
+      "name": "S",
+      "color": "#ff7f7f",
+      "min": 60,
+      "max": 75,
+      "items": [
+        {
+          "id": "item-mtvk42c9-lg8p",
+          "text": "Экскалибур",
+          "total": 75
+        },
+        {
+          "id": "item-mtvk42c9-rcz3",
+          "text": "Клинок рассвета",
+          "total": 67.5
+        },
+        {
+          "id": "item-mtvk42c9-xazn",
+          "text": "Щит титана",
+          "total": 62.5
+        }
+      ]
+    },
+    {
+      "id": "zone-mtvk42c7-2wtq",
+      "name": "A",
+      "color": "#ffbf7f",
+      "min": 45,
+      "max": 60,
+      "items": [
+        {
+          "id": "item-mtvk42c9-13v6x",
+          "text": "Лук ветра",
+          "total": 57.5
+        },
+        {
+          "id": "item-mtvk42c9-19t1o",
+          "text": "Посох огня",
+          "total": 52.5
+        },
+        {
+          "id": "item-mtvk42ca-1fq1q",
+          "text": "Зелье силы",
+          "total": 45
+        }
+      ]
+    },
+    {
+      "id": "zone-mtvk42c7-3sny",
+      "name": "B",
+      "color": "#ffe066",
+      "min": 30,
+      "max": 45,
+      "items": [
+        {
+          "id": "item-mtvk42ca-1lf29",
+          "text": "Сапоги-скороходы",
+          "total": 37.5
+        },
+        {
+          "id": "item-mtvk42ca-1r4cq",
+          "text": "Шлем стража",
+          "total": 32.5
+        }
+      ]
+    },
+    {
+      "id": "zone-mtvk42c7-44f4",
+      "name": "C",
+      "color": "#a5e887",
+      "min": 15,
+      "max": 30,
+      "items": [
+        {
+          "id": "item-mtvk42ca-1xw72",
+          "text": "Амулет удачи",
+          "total": 27.5
+        },
+        {
+          "id": "item-mtvk42cb-23gss",
+          "text": "Книга заклинаний",
+          "total": 22.5
+        },
+        {
+          "id": "item-mtvk42cb-29k4m",
+          "text": "Молот грома",
+          "total": 15
+        }
+      ]
+    },
+    {
+      "id": "zone-mtvk42c7-5yp1",
+      "name": "D",
+      "color": "#7fd1ff",
+      "min": 0,
+      "max": 15,
+      "items": [
+        {
+          "id": "item-mtvk42cb-2fyep",
+          "text": "Ржавый меч",
+          "total": 7.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "id": "sc-quality",
+      "name": "Качество",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "weight": 2,
+      "enabled": true
+    },
+    {
+      "id": "sc-useful",
+      "name": "Полезность",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "sc-looks",
+      "name": "Внешний вид",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "weight": 0.5,
+      "enabled": true
+    }
+  ],
+  "items": [
+    {
+      "id": "item-mtvk42c9-lg8p",
+      "text": "Экскалибур",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238ff0d6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300a3a3%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2281%22%20cy%3D%2295%22%20r%3D%2247%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2288%22%20cy%3D%22102%22%20r%3D%2281%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2295%22%20cy%3D%22109%22%20r%3D%22115%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22102%22%20cy%3D%22116%22%20r%3D%22149%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2238%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%AD%D0%BA%D1%81%D0%BA%D0%B0%D0%BB%D0%B8%D0%B1%D1%83%D1%80%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%237%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 10,
+        "sc-useful": 5,
+        "sc-looks": 100
+      },
+      "frozen": {},
+      "order": 0,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 75,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 10,
+          "weight": 2,
+          "contribution": 20,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 5,
+          "weight": 1,
+          "contribution": 5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 100,
+          "weight": 0.5,
+          "contribution": 50,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42c9-rcz3",
+      "text": "Клинок рассвета",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a8a%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23c0392b%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2264%22%20cy%3D%22160%22%20r%3D%2248%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22112%22%20cy%3D%2268%22%20r%3D%2282%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22116%22%20r%3D%22116%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%9A%D0%BB%D0%B8%D0%BD%D0%BE%D0%BA%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%2348%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 9,
+        "sc-useful": 4.5,
+        "sc-looks": 90
+      },
+      "frozen": {},
+      "order": 1,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 67.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 9,
+          "weight": 2,
+          "contribution": 18,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 4.5,
+          "weight": 1,
+          "contribution": 4.5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 90,
+          "weight": 0.5,
+          "contribution": 45,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42c9-xazn",
+      "text": "Щит титана",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffc078%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e17055%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22187%22%20cy%3D%2285%22%20r%3D%2249%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22136%22%20cy%3D%22174%22%20r%3D%2283%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2285%22%20cy%3D%22123%22%20r%3D%22117%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22174%22%20cy%3D%2272%22%20r%3D%22151%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%22161%22%20r%3D%22185%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%A9%D0%B8%D1%82%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%2389%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 8,
+        "sc-useful": 4,
+        "sc-looks": 85
+      },
+      "frozen": {},
+      "order": 2,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 62.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 8,
+          "weight": 2,
+          "contribution": 16,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 4,
+          "weight": 1,
+          "contribution": 4,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 85,
+          "weight": 0.5,
+          "contribution": 42.5,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42c9-13v6x",
+      "text": "Лук ветра",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffe066%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f0932b%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22150%22%20r%3D%2250%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22140%22%20r%3D%2284%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22130%22%20r%3D%22118%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22140%22%20cy%3D%22120%22%20r%3D%22152%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%9B%D1%83%D0%BA%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23130%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 8,
+        "sc-useful": 4,
+        "sc-looks": 75
+      },
+      "frozen": {},
+      "order": 3,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 57.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 8,
+          "weight": 2,
+          "contribution": 16,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 4,
+          "weight": 1,
+          "contribution": 4,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 75,
+          "weight": 0.5,
+          "contribution": 37.5,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42c9-19t1o",
+      "text": "Посох огня",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23a5e887%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2327ae60%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22153%22%20cy%3D%2275%22%20r%3D%2251%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22184%22%20cy%3D%22106%22%20r%3D%2285%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%22137%22%20r%3D%22119%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%9F%D0%BE%D1%81%D0%BE%D1%85%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23171%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 7,
+        "sc-useful": 3.5,
+        "sc-looks": 70
+      },
+      "frozen": {},
+      "order": 4,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 52.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 7,
+          "weight": 2,
+          "contribution": 14,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 3.5,
+          "weight": 1,
+          "contribution": 3.5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 70,
+          "weight": 0.5,
+          "contribution": 35,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42ca-1fq1q",
+      "text": "Зелье силы",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237fd1ff%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232980b9%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22136%22%20cy%3D%22140%22%20r%3D%2252%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2268%22%20cy%3D%2272%22%20r%3D%2286%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22140%22%20cy%3D%22144%22%20r%3D%22120%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2272%22%20cy%3D%2276%22%20r%3D%22154%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22144%22%20cy%3D%22148%22%20r%3D%22188%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%97%D0%B5%D0%BB%D1%8C%D0%B5%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23212%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 6,
+        "sc-useful": 3,
+        "sc-looks": 60
+      },
+      "frozen": {
+        "sc-looks": true
+      },
+      "order": 5,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 45,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 6,
+          "weight": 2,
+          "contribution": 12,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 3,
+          "weight": 1,
+          "contribution": 3,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 60,
+          "weight": 0.5,
+          "contribution": 30,
+          "frozen": true
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42ca-1lf29",
+      "text": "Сапоги-скороходы",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b7a5ff%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%236c5ce7%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22119%22%20cy%3D%2265%22%20r%3D%2253%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2292%22%20cy%3D%22178%22%20r%3D%2287%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2265%22%20cy%3D%22151%22%20r%3D%22121%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22178%22%20cy%3D%22124%22%20r%3D%22155%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2230%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%A1%D0%B0%D0%BF%D0%BE%D0%B3%D0%B8-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%85%D0%BE%D0%B4%D1%8B%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23253%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 5,
+        "sc-useful": 2.5,
+        "sc-looks": 50
+      },
+      "frozen": {},
+      "order": 6,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 37.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 5,
+          "weight": 2,
+          "contribution": 10,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 2.5,
+          "weight": 1,
+          "contribution": 2.5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 50,
+          "weight": 0.5,
+          "contribution": 25,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42ca-1r4cq",
+      "text": "Шлем стража",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff9fd6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23c2185b%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22102%22%20cy%3D%22130%22%20r%3D%2254%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22116%22%20cy%3D%22144%22%20r%3D%2288%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%22158%22%20r%3D%22122%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%A8%D0%BB%D0%B5%D0%BC%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23294%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 4,
+        "sc-useful": 2,
+        "sc-looks": 45
+      },
+      "frozen": {},
+      "order": 7,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 32.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 4,
+          "weight": 2,
+          "contribution": 8,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 2,
+          "weight": 1,
+          "contribution": 2,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 45,
+          "weight": 0.5,
+          "contribution": 22.5,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42ca-1xw72",
+      "text": "Амулет удачи",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238ff0d6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300a3a3%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2285%22%20cy%3D%22195%22%20r%3D%2255%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22140%22%20cy%3D%22110%22%20r%3D%2289%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22195%22%20cy%3D%22165%22%20r%3D%22123%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22110%22%20cy%3D%2280%22%20r%3D%22157%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22165%22%20cy%3D%22135%22%20r%3D%22191%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%90%D0%BC%D1%83%D0%BB%D0%B5%D1%82%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23335%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 4,
+        "sc-useful": 2,
+        "sc-looks": 35
+      },
+      "frozen": {},
+      "order": 8,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 27.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 4,
+          "weight": 2,
+          "contribution": 8,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 2,
+          "weight": 1,
+          "contribution": 2,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 35,
+          "weight": 0.5,
+          "contribution": 17.5,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42cb-23gss",
+      "text": "Книга заклинаний",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a8a%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23c0392b%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2268%22%20cy%3D%22120%22%20r%3D%2256%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22164%22%20cy%3D%2276%22%20r%3D%2290%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%22172%22%20r%3D%22124%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2276%22%20cy%3D%22128%22%20r%3D%22158%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23376%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 3,
+        "sc-useful": 1.5,
+        "sc-looks": 30
+      },
+      "frozen": {},
+      "order": 9,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 22.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 3,
+          "weight": 2,
+          "contribution": 6,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 1.5,
+          "weight": 1,
+          "contribution": 1.5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 30,
+          "weight": 0.5,
+          "contribution": 15,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42cb-29k4m",
+      "text": "Молот грома",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffc078%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e17055%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22191%22%20cy%3D%22185%22%20r%3D%2257%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22188%22%20cy%3D%22182%22%20r%3D%2291%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22185%22%20cy%3D%22179%22%20r%3D%22125%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%9C%D0%BE%D0%BB%D0%BE%D1%82%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23417%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 2,
+        "sc-useful": 1,
+        "sc-looks": 20
+      },
+      "frozen": {},
+      "order": 10,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 15,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 2,
+          "weight": 2,
+          "contribution": 4,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 1,
+          "weight": 1,
+          "contribution": 1,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 20,
+          "weight": 0.5,
+          "contribution": 10,
+          "frozen": false
+        }
+      ]
+    },
+    {
+      "id": "item-mtvk42cb-2fyep",
+      "text": "Ржавый меч",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffe066%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f0932b%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2224%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22174%22%20cy%3D%22110%22%20r%3D%2258%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%2272%22%20cy%3D%22148%22%20r%3D%2292%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22110%22%20cy%3D%22186%22%20r%3D%22126%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%2284%22%20r%3D%22160%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%3Ccircle%20cx%3D%22186%22%20cy%3D%22122%22%20r%3D%22194%22%20fill%3D%22rgba(255%2C255%2C255%2C0.10)%22%2F%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2246%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.95%22%3E%D0%A0%D0%B6%D0%B0%D0%B2%D1%8B%D0%B9%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22128%22%20y%3D%22196%22%20text-anchor%3D%22middle%22%20font-family%3D%22Segoe%20UI%2C%20Roboto%2C%20sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%3E%23458%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+      "scores": {
+        "sc-quality": 1,
+        "sc-useful": 0.5,
+        "sc-looks": 10
+      },
+      "frozen": {},
+      "order": 11,
+      "zoneId": "zone-mtvk42c7-5yp1",
+      "manual": false,
+      "total": 7.5,
+      "breakdown": [
+        {
+          "scale": "Качество",
+          "value": 1,
+          "weight": 2,
+          "contribution": 2,
+          "frozen": false
+        },
+        {
+          "scale": "Полезность",
+          "value": 0.5,
+          "weight": 1,
+          "contribution": 0.5,
+          "frozen": false
+        },
+        {
+          "scale": "Внешний вид",
+          "value": 10,
+          "weight": 0.5,
+          "contribution": 5,
+          "frozen": false
+        }
+      ]
+    }
+  ],
+  "activeScales": [
+    "sc-quality",
+    "sc-useful",
+    "sc-looks"
+  ]
+}

@@ -109,6 +109,7 @@ export function openPopover({ anchor, content, className = '', onClose, width = 
     }
   }
 
+  // следим за изменениями разметки: перерисовка списка может сдвинуть якорь
   const observer = new MutationObserver(() => {
     if (!pop.isConnected) return;
     reposition();
@@ -116,7 +117,7 @@ export function openPopover({ anchor, content, className = '', onClose, width = 
 
   reposition();
   requestAnimationFrame(reposition);
-  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+  observer.observe(document.body, { childList: true, subtree: true });
   window.addEventListener('resize', reposition);
   document.addEventListener('scroll', reposition, true);
   document.addEventListener('mousedown', onDocMouseDown, true);

@@ -78,13 +78,29 @@ export class Board {
   createZoneRow(zone) {
     const name = el('div', {
       class: 'zone-name',
-      title: 'Клик — изменить название зоны',
+      tabIndex: 0,
+      role: 'button',
+      title: 'Клик — изменить название зоны (Enter — редактировать)',
       onclick: (ev) => this.editZoneName(ev.currentTarget, zone.id),
+      onkeydown: (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          this.editZoneName(ev.currentTarget, zone.id);
+        }
+      },
     });
     const range = el('div', {
       class: 'zone-range',
-      title: 'Клик — изменить диапазон зоны',
+      tabIndex: 0,
+      role: 'button',
+      title: 'Клик — изменить диапазон зоны (Enter — редактировать)',
       onclick: (ev) => this.editZoneRange(ev.currentTarget, zone.id),
+      onkeydown: (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          this.editZoneRange(ev.currentTarget, zone.id);
+        }
+      },
     });
     const actions = el('div', { class: 'zone-label-actions' }, [
       el('button', {

@@ -84,7 +84,19 @@ export class ScalePanel {
       mk('Старт', 'min', { title: 'Точка отсчёта шкалы' }),
       mk('Финиш', 'max', { title: 'Точка окончания шкалы' }),
       mk('Шаг', 'step', { title: 'Шаг изменения балла (0 — без шага)' }),
-      el('label', { class: 'scale-weight-wrap', title: 'Вес шкалы — множитель от 0' }, ['Вес', el('input', { type: 'text', inputMode: 'decimal', onchange: (ev) => this.commit(ev.currentTarget, 'weight'), onkeydown: (ev) => { if (ev.key === 'Enter') ev.currentTarget.blur(); } })]),
+      el('label', { title: 'Вес шкалы — множитель от 0: во сколько раз балл по шкале входит в итог' }, [
+        'Вес',
+        el('span', { class: 'scale-weight-wrap' }, [
+          el('input', {
+            type: 'text',
+            inputMode: 'decimal',
+            onchange: (ev) => this.commit(ev.currentTarget, 'weight'),
+            onkeydown: (ev) => {
+              if (ev.key === 'Enter') ev.currentTarget.blur();
+            },
+          }),
+        ]),
+      ]),
     ]);
 
     return el('div', { class: 'scale-row' }, [head, params]);

@@ -747,19 +747,21 @@ input.inline-input {
 }
 .scale-weight-wrap {
   position: relative;
+  display: block;
 }
 .scale-weight-wrap::before {
   content: '×';
   position: absolute;
-  left: 6px;
+  left: 7px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-dim);
   pointer-events: none;
-  font-size: 12px;
+  font-size: 13px;
+  z-index: 1;
 }
 .scale-weight-wrap input {
-  padding-left: 16px;
+  padding-left: 18px;
 }
 
 .switch {
