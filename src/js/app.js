@@ -12,11 +12,10 @@ import { Board, tooltipFor } from './ui/board.js';
 import { $, el, fmt, isTypingTarget, openPopover, plural, scrollIntoViewIfNeeded, toast } from './ui/dom.js';
 import { openItemInspector } from './ui/itemInspector.js';
 import { ScalePanel } from './ui/scales.js';
-import { ZonePanel, openZonePopover } from './ui/zones.js';
+import { openZonePopover } from './ui/zones.js';
 
 const store = new Store(Store.load());
 let board;
-let zonePanel;
 let scalePanel;
 let inspector = null;
 let saveTimer = null;
@@ -37,7 +36,6 @@ function init() {
     isSelected: (itemId) => inspector?.itemId === itemId,
     onKeyMove: (itemId, dir) => moveByKeyboard(itemId, dir),
   });
-  zonePanel = new ZonePanel($('#zone-list'), store);
   scalePanel = new ScalePanel($('#scale-list'), store);
 
   wireToolbar();
@@ -67,7 +65,6 @@ function init() {
 /** Полная перерисовка интерфейса. */
 function render(state) {
   board.render(state);
-  zonePanel.render(state);
   scalePanel.render(state);
   renderToolbar(state);
   renderStatus(state);
@@ -522,7 +519,6 @@ function wireFileDrop() {
 window.__tierlist = {
   store,
   board,
-  zonePanel,
   scalePanel,
   render,
   tooltipFor,

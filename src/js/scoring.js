@@ -307,6 +307,9 @@ function pickStep(values, freeScales, weights, dir) {
  *  - если справа есть элемент — целевой балл равен баллу правого соседа
  *    (равенство даёт место слева от него);
  *  - иначе — минимальный балл зоны.
+ * Итог — минимально возможное значение, обосновывающее позицию: после планирования
+ * он втягивается в интервал [балл правого соседа .. балл левого соседа]
+ * (граница зоны, если соседа с этой стороны нет), не перепрыгивая через него.
  *
  * @returns {{state: object, info: object}} новое состояние и описание операции
  */
@@ -337,8 +340,10 @@ export function applyMove(state, itemId, zoneId, index) {
   const leftTotal = leftId ? totalById(leftId) : null;
   const zone = next.zones[zoneIdx];
 
-  // цель по спецификации
-  const target = rightId && rightTotal !== null ? clamp(rightTotal, zone.min, zone.max) : clamp(zone.min, zone.min, zone.max);
+  // цель по спецификации: минимум интервала, обосновывающего позицию
+  const lower = rightId && rightTotal !== null ? clamp(rightTotal, zone.min, zone.max) : zone.min;
+  const upper = leftId && leftTotal !== null ? clamp(leftTotal, zone.min, zone.max) : zone.max;
+  const target = lower;
 
   const applyOrder = () => {
     let order = 0;
@@ -390,25 +395,31 @@ export function applyMove(state, itemId, zoneId, index) {
     return itemTotal(probe, next);
   };
 
-  // страховка: элемент остаётся слева от правого соседа (при равенстве порядок задаёт order)
-  if (rightTotal !== null) {
-    for (let guard = 0; guard < 500; guard += 1) {
-      const t = totalOf();
-      if (t === null || t <= rightTotal + 1e-7) break;
-      const step = pickStep(values, freeScales, weights, -1);
-      if (!step || t + step.delta < zone.min - 1e-7) break;
-      values[step.id] = step.nv;
-    }
+  // страховка: втягиваем итог в интервал, обосновывающий позицию.
+  // Нижняя граница (правый сосед / минимум зоны) — она же цель: при равенстве
+  // порядок задаёт order, поэтому итог минимален и никогда не дотягивается до левого.
+  // Верхняя граница (левый сосед / максимум зоны) не даёт перепрыгнуть соседей слева.
+  // Шаги не перепрыгивают через интервал: если в него нельзя попасть из-за крупной
+  // сетки шагов, остаётся ближайшее достижимое значение.
+  let lo = lower;
+  let hi = upper;
+  if (lo > hi) {
+    lo = target; // противоречивые соседи — держим цель
+    hi = target;
   }
-  // и справа от левого соседа
-  if (leftTotal !== null) {
-    for (let guard = 0; guard < 500; guard += 1) {
-      const t = totalOf();
-      if (t === null || t >= leftTotal - 1e-7) break;
-      const step = pickStep(values, freeScales, weights, 1);
-      if (!step || t + step.delta > zone.max + 1e-7) break;
-      values[step.id] = step.nv;
-    }
+  for (let guard = 0; guard < 500; guard += 1) {
+    const t = totalOf();
+    if (t === null || t >= lo - 1e-7) break;
+    const step = pickStep(values, freeScales, weights, 1);
+    if (!step || t + step.delta > hi + 1e-7) break;
+    values[step.id] = step.nv;
+  }
+  for (let guard = 0; guard < 500; guard += 1) {
+    const t = totalOf();
+    if (t === null || t <= hi + 1e-7) break;
+    const step = pickStep(values, freeScales, weights, -1);
+    if (!step || t + step.delta < lo - 1e-7) break;
+    values[step.id] = step.nv;
   }
 
   item.scores = { ...item.scores, ...values };
