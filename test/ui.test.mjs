@@ -466,3 +466,41 @@ test('пример из examples/demo-tier-list.json импортируется 
   const tile = app.$$('.tile').find((t) => t.dataset.itemId === frozenItem.id);
   assert.ok(tile.classList.contains('is-frozen'));
 });
+
+test('зона создаётся одной кнопкой, без окон создания', async () => {
+  const app = await boot();
+  const before = app.store.state.zones.length;
+  app.click(app.$('#btn-add-zone'));
+  assert.equal(app.store.state.zones.length, before + 1, 'зона появилась сразу после клика');
+  assert.equal(app.$$('.popover').length, 0, 'никаких окон создания не открывается');
+  assert.equal(app.$$('dialog').length, 0, 'модальных диалогов создания нет');
+  const added = app.store.state.zones.at(-1);
+  assert.equal(added.name, `Зона ${before + 1}`, 'имя подставляется автоматически');
+  assert.equal(added.min, 0);
+  assert.equal(app.zoneName(before), added.name);
+  // и оно сразу правится кликом, без окон
+  app.click(app.zoneRow(before).querySelector('.zone-name'));
+  const input = app.zoneRow(before).querySelector('input.inline-input');
+  assert.ok(input);
+  input.value = 'Мусор';
+  app.key(input, 'Enter');
+  assert.equal(app.store.state.zones.at(-1).name, 'Мусор');
+  assert.equal(app.$$('.popover').length, 0);
+});
+
+test('окно редактирования зоны на месте: ⚙ даёт цвет, диапазон, порядок и удаление', async () => {
+  const app = await boot();
+  assert.equal(app.$$('.zone-label-actions .mini-btn').length, 15, 'в ярлыке зоны ▲, ▼ и ⚙ на каждую из 5 зон');
+  app.click(app.zoneRow(2).querySelector('.zone-label-actions .mini-btn:last-child'));
+  const pop = app.$('.popover');
+  assert.ok(pop, 'окно редактирования зоны открывается');
+  assert.match(pop.querySelector('.popover-title').textContent, /Зона «C»/);
+  assert.equal(pop.querySelectorAll('.color-grid button').length, 8);
+  const [minInput, maxInput] = pop.querySelectorAll('.scale-params input');
+  assert.ok(minInput && maxInput);
+  const foot = [...pop.querySelectorAll('.popover-foot .btn')].map((b) => b.textContent.trim());
+  assert.ok(foot.some((t) => /Выше/.test(t)));
+  assert.ok(foot.some((t) => /Ниже/.test(t)));
+  assert.ok(foot.some((t) => /Выровнять/.test(t)));
+  assert.ok(foot.some((t) => /Удалить/.test(t)));
+});

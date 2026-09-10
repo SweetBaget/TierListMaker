@@ -1098,46 +1098,6 @@ input.inline-input {
   }
 }
 
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(6, 9, 14, 0.55);
-  display: grid;
-  place-items: center;
-  z-index: 200;
-}
-.modal {
-  background: var(--panel);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  width: min(560px, calc(100vw - 32px));
-  max-height: calc(100vh - 60px);
-  overflow: auto;
-  padding: 16px;
-}
-.modal h3 {
-  margin: 0 0 8px;
-}
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 14px;
-}
-.preview-json {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px;
-  max-height: 220px;
-  overflow: auto;
-  font: 12px/1.4 'Cascadia Mono', Consolas, monospace;
-  white-space: pre-wrap;
-  word-break: break-all;
-  color: var(--text-dim);
-}
-
 .dragging-cursor,
 .dragging-cursor * {
   cursor: grabbing !important;
