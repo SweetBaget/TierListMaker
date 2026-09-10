@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' app:; img-src 'self' app: data: blob:; style-src 'self' app: 'unsafe-inline'; script-src 'self' app:; connect-src 'self' app: data: blob:"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tier List Maker</title>
+    <link rel="stylesheet" href="./src/styles/app.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f6feb'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='white' font-family='Segoe UI'%3E%F0%9F%8F%86%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <header class="topbar">
+        <div class="brand" title="Tier List Maker">
+          <span class="brand-icon" aria-hidden="true">🏆</span>
+          <span class="brand-text">Tier List Maker</span>
+        </div>
+
+        <input id="title-input" class="title-input" type="text" value="Мой тир-лист" aria-label="Название тир-листа" spellcheck="false" />
+
+        <div class="range-badge" id="range-badge" title="Диапазон баллов по включённым шкалам">
+          <span class="range-min" id="range-min">0</span>
+          <span class="range-dash">…</span>
+          <span class="range-max" id="range-max">0</span>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Способ расчёта балла">
+          <button type="button" class="mode-btn" data-mode="sum" title="Итог = сумма баллов по всем включённым шкалам с учётом весов">
+            Σ Сумма
+          </button>
+          <button type="button" class="mode-btn" data-mode="avg" title="Итог = средний балл по всем включённым шкалам с учётом весов">
+            x̄ Среднее
+          </button>
+        </div>
+
+        <div class="top-actions">
+          <button type="button" class="btn" id="btn-new" title="Начать новый тир-лист (Ctrl+N)">Новый</button>
+          <button type="button" class="btn" id="btn-import" title="Импортировать тир-лист из JSON (Ctrl+O)">Импорт JSON</button>
+          <button type="button" class="btn btn-primary" id="btn-export" title="Экспортировать тир-лист в JSON (Ctrl+S)">Экспорт JSON</button>
+          <button type="button" class="btn btn-icon" id="btn-theme" title="Светлая / тёмная тема" aria-label="Переключить тему">🌙</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="board-panel">
+          <div class="board" id="board" aria-label="Область тир-листа"></div>
+
+          <div class="add-bar">
+            <input
+              id="new-item-text"
+              class="add-input"
+              type="text"
+              placeholder="Название нового элемента…"
+              aria-label="Название нового элемента"
+              spellcheck="false"
+            />
+            <button type="button" class="btn" id="btn-add-text" title="Добавить элемент с текстом">＋ Текст</button>
+            <button type="button" class="btn" id="btn-add-image" title="Добавить элемент с картинкой (PNG, JPG, WEBP, GIF, SVG)">🖼 Картинка</button>
+            <button type="button" class="btn" id="btn-add-emoji" title="Быстрые заготовки и эмодзи">😀 Заготовки</button>
+            <span class="hint">Ctrl+V — вставить картинку из буфера</span>
+          </div>
+        </section>
+
+        <aside class="side">
+          <section class="card" id="zone-panel">
+            <header class="card-head">
+              <h2>Зоны</h2>
+              <div class="card-head-actions">
+                <span class="pill" id="zone-count">5</span>
+                <button type="button" class="btn btn-small" id="btn-add-zone" title="Добавить зону снизу">＋ Зона</button>
+              </div>
+            </header>
+            <p class="card-note">
+              Имя и диапазон зоны редактируются кликом. Верхняя зона всегда заканчивается максимумом, нижняя — начинается с минимума
+              включённых шкал.
+            </p>
+            <div class="zone-list" id="zone-list"></div>
+          </section>
+
+          <section class="card" id="scale-panel">
+            <header class="card-head">
+              <h2>Шкалы оценки</h2>
+              <div class="card-head-actions">
+                <button type="button" class="btn btn-small" id="btn-add-scale" title="Добавить шкалу">＋ Шкала</button>
+              </div>
+            </header>
+            <p class="card-note">
+              Три галки/переключателя у каждой шкалы: включить в расчёт, «только я» (оставить одну) и «заморозка» для конкретного элемента.
+            </p>
+            <div class="scale-list" id="scale-list"></div>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="statusbar">
+        <label class="check" title="Автоматически подгонять баллы при ручном перемещении элемента">
+          <input type="checkbox" id="auto-adjust" checked />
+          <span>Авто-подстройка баллов при перемещении</span>
+        </label>
+        <span class="status-sep">•</span>
+        <span id="status-mode">Расчёт: сумма баллов</span>
+        <span class="status-sep">•</span>
+        <span id="status-summary">Элементов: 0 · Зон: 5 · Шкал: 3</span>
+        <span class="status-spacer"></span>
+        <span class="hint" id="status-hint">Перетащите элемент в нужную зону — баллы подстроятся автоматически</span>
+      </footer>
+    </div>
+
+    <div id="popover-root"></div>
+    <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./src/js/app.js"></script>
+  </body>
+</html>
