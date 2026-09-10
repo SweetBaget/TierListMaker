@@ -12,7 +12,7 @@ import { Board, tooltipFor } from './ui/board.js';
 import { $, el, fmt, isTypingTarget, openPopover, plural, scrollIntoViewIfNeeded, toast } from './ui/dom.js';
 import { openItemInspector } from './ui/itemInspector.js';
 import { ScalePanel } from './ui/scales.js';
-import { ZonePanel, openZonePopover } from './ui/zones.js';
+import { ZonePanel } from './ui/zones.js';
 
 const store = new Store(Store.load());
 let board;
@@ -33,7 +33,6 @@ function init() {
     onOpenItem: (itemId, anchor) => openInspector(itemId, anchor),
     onPatchZone: (zoneId, patch) => store.patchZone(zoneId, patch),
     onMoveZone: (zoneId, dir) => store.moveZone(zoneId, dir),
-    onOpenZone: (zoneId, anchor) => openZonePopover(anchor, zoneId, store),
     isSelected: (itemId) => inspector?.itemId === itemId,
     onKeyMove: (itemId, dir) => moveByKeyboard(itemId, dir),
   });
@@ -105,6 +104,11 @@ function wireToolbar() {
   $('#btn-add-zone').addEventListener('click', () => {
     store.addZone(`Зона ${store.state.zones.length + 1}`);
     toast('Зона добавлена снизу', 'info');
+  });
+  $('#btn-even-zones').addEventListener('click', () => {
+    store.evenZones();
+    const range = globalRange(store.state);
+    toast(`Зоны выровнены: ${fmt(range.min, 2)} … ${fmt(range.max, 2)} поделены поровну между ${store.state.zones.length} зонами`, 'info');
   });
   $('#btn-add-scale').addEventListener('click', () => {
     store.addScale();

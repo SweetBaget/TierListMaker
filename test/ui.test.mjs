@@ -404,31 +404,57 @@ test('стили приложения разбираются и содержат
   assert.match(css, /:root\[data-theme='light'\]/, 'есть светлая тема');
 });
 
-test('кнопка ⚙ в зоне открывает карточку настройки с цветом и диапазоном', async () => {
+test('у зон нет отдельного окна редактирования — правка идёт на месте', async () => {
   const app = await boot();
-  const gear = app.zoneRow(1).querySelector('.zone-label-actions .mini-btn:last-child');
-  app.click(gear);
-  const pop = app.$('.popover');
-  assert.ok(pop, 'карточка зоны должна открыться');
-  assert.match(pop.querySelector('.popover-title').textContent, /Зона «B»/);
-  assert.equal(pop.querySelectorAll('.color-grid button').length, 8);
+  assert.equal(app.$$('.zone-label-actions .mini-btn').length, 10, 'в ярлыке зоны только ▲ и ▼');
+  assert.equal(app.$$('.popover').length, 0);
 
-  // меняем цвет
-  app.click(pop.querySelectorAll('.color-grid button')[3]);
-  assert.equal(app.store.state.zones[1].color, '#a5e887');
+  // правка имени и диапазона в панели зон — прямо в строке
+  const nameEl = app.$('.zone-row .zone-row-name');
+  app.click(nameEl);
+  const input = app.$('.zone-row .zone-row-name input.inline-input');
+  assert.ok(input, 'поле имени появляется в самой строке зоны');
+  input.value = 'Лучшие';
+  app.key(input, 'Enter');
+  assert.equal(app.store.state.zones[0].name, 'Лучшие');
+  assert.equal(app.zoneName(0), 'Лучшие');
 
-  // меняем нижнюю границу зоны
-  const [minInput] = pop.querySelectorAll('.scale-params input');
-  minInput.value = '52';
-  minInput.dispatchEvent(new app.window.Event('change', { bubbles: true }));
-  assert.equal(app.store.state.zones[1].min, 52);
-  assert.equal(app.store.state.zones[2].max, 52, 'зона ниже подтягивается');
-
-  // «выровнять все зоны»
-  const even = [...pop.querySelectorAll('.popover-foot .btn')].find((b) => /Выровнять/.test(b.textContent));
-  app.click(even);
+  // диапазон правится полями в той же строке
+  const maxInput = app.$$('.zone-row-range input')[1];
+  maxInput.value = '60';
+  maxInput.dispatchEvent(new app.window.Event('change', { bubbles: true }));
   assert.equal(app.store.state.zones[0].min, 60);
-  assert.equal(app.store.state.zones[1].min, 45);
+  assert.equal(app.store.state.zones[1].max, 60);
+
+  assert.equal(app.$$('.popover').length, 0, 'никаких окон редактирования зон не открывается');
+});
+
+test('цвет зоны переключается кликом по квадрату, Alt+клик — назад', async () => {
+  const app = await boot();
+  const swatch = app.$$('.zone-row .swatch')[0];
+  const first = app.store.state.zones[0].color;
+  app.click(swatch);
+  const second = app.store.state.zones[0].color;
+  assert.notEqual(second, first);
+  swatch.dispatchEvent(new app.window.MouseEvent('click', { bubbles: true, cancelable: true, altKey: true }));
+  assert.equal(app.store.state.zones[0].color, first);
+  assert.equal(app.$$('.popover').length, 0);
+});
+
+test('кнопка «Выровнять» делит диапазон между зонами поровну', async () => {
+  const app = await boot();
+  app.store.patchZone(app.store.state.zones[0].id, { min: 70 });
+  app.click(app.$('#btn-even-zones'));
+  assert.deepEqual(
+    app.store.state.zones.map((z) => [z.min, z.max]),
+    [
+      [60, 75],
+      [45, 60],
+      [30, 45],
+      [15, 30],
+      [0, 15],
+    ]
+  );
 });
 
 test('Alt+стрелки переносят элемент между зонами', async () => {
