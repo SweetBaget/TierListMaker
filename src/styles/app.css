@@ -992,6 +992,11 @@ input.inline-input {
   flex: 1 1 auto;
 }
 
+.zone-pop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .color-grid {
   display: flex;
   flex-wrap: wrap;

@@ -123,6 +123,16 @@ export class Board {
           this.h.onMoveZone?.(zone.id, 1);
         },
       }),
+      el('button', {
+        class: 'mini-btn',
+        type: 'button',
+        title: 'Настроить зону (цвет, диапазон, удаление)',
+        textContent: '⚙',
+        onclick: (ev) => {
+          ev.stopPropagation();
+          this.h.onOpenZone?.(zone.id, ev.currentTarget);
+        },
+      }),
     ]);
     const label = el('div', { class: 'zone-label' }, [name, range, actions]);
     const items = el('div', { class: 'zone-items', dataset: { zoneId: zone.id } });
