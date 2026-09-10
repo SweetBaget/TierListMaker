@@ -154,6 +154,68 @@ test('перемещение влево от правого соседа: бал
   );
 });
 
+test('между соседями берётся балл правого — минимальный обосновывающий', () => {
+  const store = freshStore((s) => {
+    s.scales.forEach((sc) => {
+      sc.enabled = sc.id === 'sc-quality';
+      sc.weight = 1;
+    });
+    s.items.push({ id: 'left', text: 'L', image: null, scores: { 'sc-quality': 7 }, frozen: {}, order: 0 });
+    s.items.push({ id: 'right', text: 'R', image: null, scores: { 'sc-quality': 6 }, frozen: {}, order: 1 });
+    s.items.push({ id: 'me', text: 'M', image: null, scores: { 'sc-quality': 0 }, frozen: {}, order: 2 });
+  });
+  const zoneB = store.state.zones[1]; // 6..8
+  const info = store.moveItem('me', zoneB.id, 1); // между left(7) и right(6)
+  assert.equal(info.target, 6);
+  const meTotal = scoring.itemTotal(store.state.items.find((i) => i.id === 'me'), store.state);
+  assert.equal(meTotal, 6, 'итог равен правому соседу, а не дотягивается до левого');
+  assert.deepEqual(
+    scoring.layout(store.state)[1].items.map((e) => e.item.id),
+    ['left', 'me', 'right']
+  );
+});
+
+test('в конец зоны ставится минимум зоны, а не балл левого соседа', () => {
+  const store = freshStore((s) => {
+    s.scales.forEach((sc) => {
+      sc.enabled = sc.id === 'sc-quality';
+      sc.weight = 1;
+    });
+    s.items.push({ id: 'x', text: 'X', image: null, scores: { 'sc-quality': 3 }, frozen: {}, order: 0 });
+    s.items.push({ id: 'me', text: 'M', image: null, scores: { 'sc-quality': 0 }, frozen: {}, order: 1 });
+  });
+  const zoneD = store.state.zones[3]; // 2..4
+  const info = store.moveItem('me', zoneD.id, 1); // после x(3), справа никого
+  assert.equal(info.target, 2);
+  const meTotal = scoring.itemTotal(store.state.items.find((i) => i.id === 'me'), store.state);
+  assert.equal(meTotal, 2, 'итог равен минимуму зоны, а не левому соседу');
+  assert.deepEqual(
+    scoring.layout(store.state)[3].items.map((e) => e.item.id),
+    ['x', 'me']
+  );
+});
+
+test('план ниже правого соседа подтягивается вверх до достижимого минимума', () => {
+  const store = freshStore((s) => {
+    s.scales.forEach((sc) => {
+      sc.enabled = sc.id === 'sc-quality' || sc.id === 'sc-looks';
+      sc.weight = 1;
+    });
+    // right: 6 + 0 = 6; у me заморожено 2, свободная шкала с шагом 5: достижимо 2, 7, 12, …
+    s.items.push({ id: 'right', text: 'R', image: null, scores: { 'sc-quality': 6, 'sc-looks': 0 }, frozen: {}, order: 0 });
+    s.items.push({ id: 'me', text: 'M', image: null, scores: { 'sc-quality': 2 }, frozen: { 'sc-quality': true }, order: 1 });
+  });
+  const zoneE = store.state.zones[4]; // 0..22
+  const info = store.moveItem('me', zoneE.id, 0); // слева от right(6)
+  assert.equal(info.target, 6);
+  const meTotal = scoring.itemTotal(store.state.items.find((i) => i.id === 'me'), store.state);
+  assert.equal(meTotal, 7, 'ровно 6 недостижимо — взят ближайший достижимый минимум 7');
+  assert.deepEqual(
+    scoring.layout(store.state)[4].items.map((e) => e.item.id),
+    ['me', 'right']
+  );
+});
+
 test('балл не опускается ниже минимума зоны', () => {
   const store = freshStore((s) => {
     s.items.push({ id: 'i1', text: 'A', image: null, scores: { 'sc-quality': 10, 'sc-useful': 5, 'sc-looks': 100 }, frozen: {}, order: 0 });
